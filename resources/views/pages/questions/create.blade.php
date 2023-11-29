@@ -118,23 +118,23 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Correct Answer</label>
+                                <label class="form-label">Answer</label>
                                 <div class="selectgroup w-100">
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="correct_answer" value="A" class="selectgroup-input"
+                                        <input type="radio" name="answer" value="A" class="selectgroup-input"
                                             checked="">
                                         <span class="selectgroup-button">A</span>
                                     </label>
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="correct_answer" value="B" class="selectgroup-input">
+                                        <input type="radio" name="answer" value="B" class="selectgroup-input">
                                         <span class="selectgroup-button">B</span>
                                     </label>
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="correct_answer" value="C" class="selectgroup-input">
+                                        <input type="radio" name="answer" value="C" class="selectgroup-input">
                                         <span class="selectgroup-button">C</span>
                                     </label>
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="correct_answer" value="D" class="selectgroup-input">
+                                        <input type="radio" name="answer" value="D" class="selectgroup-input">
                                         <span class="selectgroup-button">D</span>
                                     </label>
 

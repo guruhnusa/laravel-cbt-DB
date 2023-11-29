@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('option_c');
             //option d
             $table->string('option_d');
-            //correct answer
-            $table->enum('correct_answer', ['A', 'B', 'C', 'D']);
+
+            $table->enum('answer', ['a', 'b', 'c', 'd']);
             $table->timestamps();
         });
     }

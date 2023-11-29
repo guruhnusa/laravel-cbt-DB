@@ -28,7 +28,7 @@ class StoreQuestionRequest extends FormRequest
             'option_b' => 'required|max:255',
             'option_c' => 'required|max:255',
             'option_d' => 'required|max:255',
-            'correct_answer' => 'required|in:A,B,C,D',
+            'answer' => 'required|in:A,B,C,D',
         ];
     }
 }

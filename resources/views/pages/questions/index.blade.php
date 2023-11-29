@@ -13,7 +13,7 @@
             <div class="section-header">
                 <h1>All Questions</h1>
                 <div class="section-header-button">
-                    <a href="{{ route('questions.store') }}" class="btn btn-primary">Add New</a>
+                    <a href="{{ route('questions.create') }}" class="btn btn-primary">Add New</a>
                 </div>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
@@ -69,7 +69,7 @@
                                             <th>Option B</th>
                                             <th>Option C</th>
                                             <th>Option D</th>
-                                            <th>Correct Answer</th>
+                                            <th>Answer</th>
                                         </tr>
                                         @foreach ($questions as $question)
                                             <tr>
@@ -95,7 +95,7 @@
                                                     {{ $question->option_d }}
                                                 </td>
                                                 <td>
-                                                    {{ $question->correct_answer }}
+                                                    {{ $question->answer}}
                                                 </td>
                                                 {{-- <td>
                                                     <div class="d-flex justify-content-center">

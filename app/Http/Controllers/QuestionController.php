@@ -21,6 +21,7 @@ class QuestionController extends Controller
         return view('pages.questions.index', compact('questions'));
     }
 
+
     public function create(){
         return view('pages.questions.create');
     }
@@ -29,6 +30,5 @@ class QuestionController extends Controller
         $data = $request ->all();
         Question::create($data);
         return redirect()->route('questions.index')->with('success', 'Question successfully created');
-
     }
 }

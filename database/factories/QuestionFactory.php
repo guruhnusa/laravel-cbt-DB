@@ -23,7 +23,7 @@ class QuestionFactory extends Factory
             "option_b" => $this->faker->word(),
             "option_c" => $this->faker->word(),
             "option_d" => $this->faker->word(),
-            "correct_answer" => $this->faker->randomElement(['A', 'B', 'C', 'D']),
+            "answer" => $this->faker->randomElement(['a', 'b', 'c', 'd']),
         ];
     }
 }
