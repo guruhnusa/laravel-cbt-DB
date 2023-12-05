@@ -21,17 +21,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //register
-Route::post('/register',[AuthController::class,'register']);
+Route::post('/register', [AuthController::class, 'register']);
 //login
-Route::post('/login',[AuthController::class,'login']);
+Route::post('/login', [AuthController::class, 'login']);
 //logout
-Route::post('/logout',[AuthController::class,'logout'])->middleware('auth:sanctum');
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+//forgot password
+Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
 
 //create exam
-Route::post('/create-exam',[ExamController::class,'createExam'])->middleware('auth:sanctum');
+Route::post('/create-exam', [ExamController::class, 'createExam'])->middleware('auth:sanctum');
 
 //get question exam
-Route::get('/get-question-exam',[ExamController::class,'getListSoalByCategory'])->middleware('auth:sanctum');
+Route::get('/get-question-exam', [ExamController::class, 'getListSoalByCategory'])->middleware('auth:sanctum');
 
 //post answer
-Route::post('/answers',[ExamController::class,'answerQuestion'])->middleware('auth:sanctum');
+Route::post('/answers', [ExamController::class, 'answerQuestion'])->middleware('auth:sanctum');
