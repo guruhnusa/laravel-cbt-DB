@@ -41,6 +41,8 @@ Route::get('/get-question-exam', [ExamController::class, 'getListSoalByCategory'
 //post answer
 Route::post('/answers', [ExamController::class, 'answerQuestion'])->middleware('auth:sanctum');
 
+//get answer exam
+Route::get('/get-score', [ExamController::class, 'calculateScoreByCategory'])->middleware('auth:sanctum');
 
 //api content
 Route::apiResource('contents', ContentController::class)->middleware('auth:sanctum');

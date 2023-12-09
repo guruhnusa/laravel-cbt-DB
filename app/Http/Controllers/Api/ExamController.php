@@ -65,21 +65,21 @@ class ExamController extends Controller
         ]);
 
         //create exam detail
-        foreach($questionNumeric as $question){
+        foreach ($questionNumeric as $question) {
             ExamQuestionList::create([
                 'exam_id' => $exam->id,
                 'question_id' => $question->id,
             ]);
         }
 
-        foreach($questionVerbal as $question){
+        foreach ($questionVerbal as $question) {
             ExamQuestionList::create([
                 'exam_id' => $exam->id,
                 'question_id' => $question->id,
             ]);
         }
 
-        foreach($questionLogika as $question){
+        foreach ($questionLogika as $question) {
             ExamQuestionList::create([
                 'exam_id' => $exam->id,
                 'question_id' => $question->id,
@@ -105,15 +105,14 @@ class ExamController extends Controller
             'message' => 'Get question successfully',
             'question' => QuestionResource::collection($question),
         ]);
-
     }
 
     //answer question
     public function answerQuestion(Request $request)
     {
         $validatedData = $request->validate([
-            'question_id'=>'required',
-            'answer'=>'required',
+            'question_id' => 'required',
+            'answer' => 'required',
         ]);
 
         $exam = Exam::where('user_id', $request->user()->id)->first();
@@ -121,11 +120,11 @@ class ExamController extends Controller
         $question = Question::where('id', $validatedData['question_id'])->first();
 
         //check answer
-        if($question->answer == $validatedData['answer']){
+        if ($question->answer == $validatedData['answer']) {
             $examQuestionList->update(
                 ['answer' => true]
             );
-        }else{
+        } else {
             $examQuestionList->update(
                 ['answer' => false]
             );
@@ -135,7 +134,39 @@ class ExamController extends Controller
             'message' => 'Answer question successfully',
             'answer' => $examQuestionList->answer,
         ]);
-
     }
 
+    //calculate exam scores by category
+    public function calculateScoreByCategory(Request $request)
+    {
+        $category =  $request->category;
+        $exam = Exam::where('user_id', $request->user()->id)->first();
+        $examQuestionList = ExamQuestionList::where('exam_id', $exam->id)->get();
+        //questionlist by category
+        $examQuestionList = $examQuestionList->filter(function ($value, $key) use ($category) {
+            return $value->question->category == $category;
+        });
+
+        //calculate score
+        $totalCorrectAnswer = $examQuestionList->where('answer', true)->count();
+        $totalQuestion = $examQuestionList->count();
+        $score = ($totalCorrectAnswer / $totalQuestion) * 100;
+
+        $category_field = 'score_verbal';
+        if ($category == 'Numeric') {
+            $category_field = 'score_numeric';
+        } else if ($category == 'Logika') {
+            $category_field = 'score_logika';
+        }
+
+        //update score
+        $exam->update([
+            $category_field => $score,
+        ]);
+
+        return response()->json([
+            'message' => 'Get score successfully',
+            'score' => $score,
+        ]);
+    }
 }
