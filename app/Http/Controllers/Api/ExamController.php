@@ -99,7 +99,7 @@ class ExamController extends Controller
         if (!$exam) {
             return response()->json([
                 'message' => 'Exam not found',
-                'data' => '[]',
+                'data' => [],
             ], 200);
         }
 
@@ -126,7 +126,7 @@ class ExamController extends Controller
         if (!$exam) {
             return response()->json([
                 'message' => 'Exam not found',
-                'data' => '[]',
+                'data' => [],
             ], 200);
         }
         $examQuestionList = ExamQuestionList::where('exam_id', $exam->id)->where('question_id', $validatedData['question_id'])->first();
@@ -157,7 +157,7 @@ class ExamController extends Controller
         if (!$exam) {
             return response()->json([
                 'message' => 'Exam not found',
-                'data' => '[]',
+                'data' => [],
             ], 200);
         }
         $examQuestionList = ExamQuestionList::where('exam_id', $exam->id)->get();
