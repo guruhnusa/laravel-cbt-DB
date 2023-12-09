@@ -104,7 +104,7 @@ class ExamController extends Controller
         return response()->json([
             'message' => 'Get question successfully',
             'data' => QuestionResource::collection($question),
-        ]);
+        ], 200);
     }
 
     //answer question
@@ -167,6 +167,6 @@ class ExamController extends Controller
         return response()->json([
             'message' => 'Get score successfully',
             'score' => $score,
-        ]);
+        ], 200);
     }
 }
