@@ -103,7 +103,7 @@ class ExamController extends Controller
 
         return response()->json([
             'message' => 'Get question successfully',
-            'question' => QuestionResource::collection($question),
+            'data' => QuestionResource::collection($question),
         ]);
     }
 
