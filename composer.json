@@ -11,7 +11,10 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
-        "realrashid/sweet-alert": "^7.1"
+        "mailgun/mailgun-php": "^3.6",
+        "realrashid/sweet-alert": "^7.1",
+        "symfony/http-client": "^6.4",
+        "symfony/mailgun-mailer": "^6.4"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

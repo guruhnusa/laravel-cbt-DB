@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ContentController;
 use App\Http\Controllers\Api\ExamController;
+use App\Http\Controllers\Api\MateriController;
+use App\Models\Content;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,3 +40,10 @@ Route::get('/get-question-exam', [ExamController::class, 'getListSoalByCategory'
 
 //post answer
 Route::post('/answers', [ExamController::class, 'answerQuestion'])->middleware('auth:sanctum');
+
+
+//api content
+Route::apiResource('contents', ContentController::class)->middleware('auth:sanctum');
+
+//api material
+Route::apiResource('materials', MateriController::class)->middleware('auth:sanctum');
