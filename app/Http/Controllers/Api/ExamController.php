@@ -107,9 +107,17 @@ class ExamController extends Controller
         $examQuestionListId = $examQuestionList->pluck('question_id');
 
         $question = Question::whereIn('id', $examQuestionListId)->where('category', $request->category)->get();
+        //timer by category
+        $timer = $exam->timer_numeric;
+        if ($request->category == 'Verbal') {
+            $timer = $exam->timer_verbal;
+        } else if ($request->category == 'Logika') {
+            $timer = $exam->timer_logika;
+        }
 
         return response()->json([
             'message' => 'Get question successfully',
+            'timer' => $timer,
             'data' => QuestionResource::collection($question),
         ], 200);
     }

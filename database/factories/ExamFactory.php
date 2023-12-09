@@ -17,11 +17,18 @@ class ExamFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => $this->faker->numberBetween(1,11),
-            'score_numeric' => $this->faker->numberBetween(1,100),
-            'score_verbal' => $this->faker->numberBetween(1,100),
-            'score_logika' => $this->faker->numberBetween(1,100),
-            'result' => $this->faker->randomElement(['Passed','Failed']),
+            'user_id' => $this->faker->numberBetween(1, 11),
+            'score_numeric' => $this->faker->numberBetween(1, 100),
+            'score_verbal' => $this->faker->numberBetween(1, 100),
+            'score_logika' => $this->faker->numberBetween(1, 100),
+            'result' => $this->faker->randomElement(['Passed', 'Failed']),
+            'status_numeric' => $this->faker->randomElement(['start', 'done']),
+            'status_verbal' => $this->faker->randomElement(['start', 'done']),
+            'status_logika' => $this->faker->randomElement(['start', 'done']),
+            'timer_numeric' => $this->faker->numberBetween(1, 100),
+            'timer_logika' => $this->faker->numberBetween(1, 100),
+            'timer_verbal' => $this->faker->numberBetween(1, 100),
+
         ];
     }
 }

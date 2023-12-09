@@ -19,6 +19,14 @@ return new class extends Migration
             $table->integer('score_numeric')->nullable();
             $table->integer('score_verbal')->nullable();
             $table->integer('score_logika')->nullable();
+            //status ujian enum('start','done')
+            $table->enum('status_numeric', ['start', 'done'])->default('start');
+            $table->enum('status_verbal', ['start', 'done'])->default('start');
+            $table->enum('status_logika', ['start', 'done'])->default('start');
+            //timer exam
+            $table->integer('timer_numeric')->nullable();
+            $table->integer('timer_logika')->nullable();
+            $table->integer('timer_verbal')->nullable();
             //results
             $table->string('result')->nullable();
             $table->timestamps();
