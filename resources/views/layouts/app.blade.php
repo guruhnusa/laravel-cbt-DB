@@ -44,6 +44,9 @@
 <body>
     <div id="app">
         <div class="main-wrapper">
+            <!-- Alert -->
+            @include('sweetalert::alert')
+
             <!-- Header -->
             @include('components.header')
 
