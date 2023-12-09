@@ -96,6 +96,13 @@ class ExamController extends Controller
     public function getListSoalByCategory(Request $request)
     {
         $exam = Exam::where('user_id', $request->user()->id)->first();
+        if (!$exam) {
+            return response()->json([
+                'message' => 'Exam not found',
+                'data' => '[]',
+            ], 200);
+        }
+
         $examQuestionList = ExamQuestionList::where('exam_id', $exam->id)->get();
         $examQuestionListId = $examQuestionList->pluck('question_id');
 
@@ -116,6 +123,12 @@ class ExamController extends Controller
         ]);
 
         $exam = Exam::where('user_id', $request->user()->id)->first();
+        if (!$exam) {
+            return response()->json([
+                'message' => 'Exam not found',
+                'data' => '[]',
+            ], 200);
+        }
         $examQuestionList = ExamQuestionList::where('exam_id', $exam->id)->where('question_id', $validatedData['question_id'])->first();
         $question = Question::where('id', $validatedData['question_id'])->first();
 
@@ -141,6 +154,12 @@ class ExamController extends Controller
     {
         $category =  $request->category;
         $exam = Exam::where('user_id', $request->user()->id)->first();
+        if (!$exam) {
+            return response()->json([
+                'message' => 'Exam not found',
+                'data' => '[]',
+            ], 200);
+        }
         $examQuestionList = ExamQuestionList::where('exam_id', $exam->id)->get();
         //questionlist by category
         $examQuestionList = $examQuestionList->filter(function ($value, $key) use ($category) {
