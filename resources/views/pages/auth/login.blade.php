@@ -54,6 +54,7 @@
                     </div>
                 </div>
 
+
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
                         Login
@@ -63,9 +64,12 @@
 
         </div>
     </div>
-    <div class="text-muted mt-5 text-center">
+    <div class="text-muted text-center">
         Don't have an account? <a href="{{ route('register') }}">Create One</a>
+        <br>
+        <span> Forgot your password? <a style="color: red;" href="{{ route('password.request') }}">Reset Password</a></span>
     </div>
+
 @endsection
 
 @push('scripts')

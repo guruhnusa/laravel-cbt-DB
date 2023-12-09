@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Users')
+@section('title', 'All Questions')
 
 @push('style')
     <!-- CSS Libraries -->\
@@ -11,14 +11,14 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Users</h1>
+                <h1>All Questions</h1>
                 <div class="section-header-button">
-                    <a href="{{ route('users.create') }}" class="btn btn-primary">Add New</a>
+                    <a href="{{ route('questions.create') }}" class="btn btn-primary">Add New</a>
                 </div>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Users</a></div>
-                    <div class="breadcrumb-item">All Users</div>
+                    <div class="breadcrumb-item"><a href="#">Questions</a></div>
+                    <div class="breadcrumb-item">All Questions</div>
                 </div>
             </div>
             <div class="section-body">
@@ -27,7 +27,7 @@
                         @include('layouts.alert')
                     </div>
                 </div>
-                <h2 class="section-title">All Users List</h2>
+                <h2 class="section-title">All Questions List</h2>
                 <p class="section-lead">
                     You can manage all posts, such as editing, deleting and more.
                 </p>
@@ -47,9 +47,9 @@
                                     </select>
                                 </div>
                                 <div class="float-right">
-                                    <form method="GET" action="{{ route('users.index') }}">
+                                    <form method="GET" action="{{ route('questions.index') }}">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Search" name="name">
+                                            <input type="text" class="form-control" placeholder="Search" name="questions">
                                             <div class="input-group-append">
                                                 <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                                             </div>
@@ -62,31 +62,42 @@
                                 <div class="table-responsive">
                                     <table class="table-striped table">
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Created At</th>
-                                            <th>Roles</th>
-                                            <th>Action</th>
+                                            <th>Id</th>
+                                            <th>Question</th>
+                                            <th>Category</th>
+                                            <th>Option A</th>
+                                            <th>Option B</th>
+                                            <th>Option C</th>
+                                            <th>Option D</th>
+                                            <th>Answer</th>
                                         </tr>
-                                        @foreach ($users as $user)
+                                        @foreach ($questions as $question)
                                             <tr>
                                                 <td>
-                                                    {{ $user->name }}
+                                                    {{ $question->id }}
                                                 </td>
                                                 <td>
-                                                    {{ $user->email }}
+                                                    {{ $question->question }}
                                                 </td>
                                                 <td>
-                                                    {{ $user->phone }}
+                                                    {{ $question->category }}
                                                 </td>
                                                 <td>
-                                                    {{ $user->created_at }}
+                                                    {{ $question->option_a }}
                                                 </td>
                                                 <td>
-                                                    {{ $user->roles }}
+                                                    {{ $question->option_b }}
                                                 </td>
                                                 <td>
+                                                    {{ $question->option_c }}
+                                                </td>
+                                                <td>
+                                                    {{ $question->option_d }}
+                                                </td>
+                                                <td>
+                                                    {{ $question->answer}}
+                                                </td>
+                                                {{-- <td>
                                                     <div class="d-flex justify-content-center">
                                                         <a href='{{ route('users.edit', $user->id) }}'
                                                             class="btn btn-sm btn-info btn-icon">
@@ -103,13 +114,13 @@
                                                             </button>
                                                         </form>
                                                     </div>
-                                                </td>
+                                                </td> --}}
                                             </tr>
                                         @endforeach
                                     </table>
                                 </div>
                                 <div class="float-right">
-                                    {{ $users->withQueryString()->links() }}
+                                    {{ $questions->withQueryString()->links() }}
                                 </div>
                             </div>
                         </div>
