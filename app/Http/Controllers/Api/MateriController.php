@@ -17,8 +17,15 @@ class MateriController extends Controller
         $materis = Material::when($request->id, function ($query, $id) {
             return $query->where("id", $id);
         })->get();
-
-        return response()->json(['status' => 'success', 'data' => $materis]);
+        //image
+        $materis->map(function ($materi) {
+            $materi->image = asset("storage/" . $materi->image);
+            return $materi;
+        });
+        return response()->json([
+            "status" => "success",
+            "data" => $materis
+        ]);
     }
 
     /**
