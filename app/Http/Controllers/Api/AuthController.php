@@ -46,7 +46,7 @@ class AuthController extends Controller
         if (!$user) {
             return response()->json(['message' => 'User not found'], 401);
         }
-
+        
         if (!Hash::check($loginData['password'], $user->password)) {
             return response()->json(['message' => 'Invalid Password'], 401);
         }

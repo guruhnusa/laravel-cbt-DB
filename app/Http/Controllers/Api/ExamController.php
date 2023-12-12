@@ -179,6 +179,7 @@ class ExamController extends Controller
         $totalQuestion = $examQuestionList->count();
         $score = ($totalCorrectAnswer / $totalQuestion) * 100;
 
+
         $category_field = 'score_verbal';
         if ($category == 'Numeric') {
             $category_field = 'score_numeric';
@@ -186,7 +187,6 @@ class ExamController extends Controller
             $category_field = 'score_logika';
         }
 
-        //update score
         $exam->update([
             $category_field => $score,
         ]);

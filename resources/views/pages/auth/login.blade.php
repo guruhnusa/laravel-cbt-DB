@@ -12,10 +12,17 @@
         <div class="card-header">
             <h4>Login</h4>
         </div>
-
         <div class="card-body">
             <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
                 @csrf
+                @if (session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong> {{ session('error') }} </strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true"> &times; </span>
+                        </button>
+                    </div>
+                @endif
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input id="email" type="email"

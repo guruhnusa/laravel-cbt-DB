@@ -6,8 +6,10 @@ use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
+use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -48,6 +50,29 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::resetPasswordView(function (Request $request) {
             return view('pages.auth.reset-password', ['request' => $request]);
         });
+
+        //make login that user roles admin can access dashboard and if not admin can't access dashboard and give alert SESSION
+        Fortify::authenticateUsing(function (Request $request) {
+            $user = User::where('email', $request->email)->first();
+
+            if (
+                $user &&
+                Hash::check($request->password, $user->password) &&
+                $user->roles == 'ADMIN'
+            ) {
+                return $user;
+            } else if (
+                $user &&
+                Hash::check($request->password, $user->password) &&
+                $user->roles != 'ADMIN'
+            ) {
+
+                return session()->flash('error', 'Dont have access to dashboard');
+            } else {
+                return session()->flash('error', 'Your email or password is wrong');
+            }
+        });
+
 
 
 
