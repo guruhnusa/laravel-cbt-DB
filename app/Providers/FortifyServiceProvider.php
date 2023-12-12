@@ -54,7 +54,6 @@ class FortifyServiceProvider extends ServiceProvider
         //make login that user roles admin can access dashboard and if not admin can't access dashboard and give alert SESSION
         Fortify::authenticateUsing(function (Request $request) {
             $user = User::where('email', $request->email)->first();
-
             if (
                 $user &&
                 Hash::check($request->password, $user->password) &&
