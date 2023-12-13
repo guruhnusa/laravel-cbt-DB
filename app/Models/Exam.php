@@ -14,6 +14,13 @@ class Exam extends Model
         'score_numeric',
         'score_verbal',
         'score_logika',
-        'result'
+        'result',
+        'status_numeric',
+        'status_verbal',
+        'status_logika',
+        'timer_numeric',
+        'timer_verbal',
+        'timer_logika',
+
     ];
 }

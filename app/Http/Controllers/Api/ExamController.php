@@ -178,22 +178,31 @@ class ExamController extends Controller
         $totalCorrectAnswer = $examQuestionList->where('answer', true)->count();
         $totalQuestion = $examQuestionList->count();
         $score = ($totalCorrectAnswer / $totalQuestion) * 100;
-
-
+        //totalIncorrectAnswer
+        $totalIncorrectAnswer = $examQuestionList->where('answer', false)->count();
         $category_field = 'score_verbal';
+        $status_field = 'status_verbal';
+        $timer_field = 'timer_verbal';
         if ($category == 'Numeric') {
             $category_field = 'score_numeric';
+            $status_field = 'status_numeric';
+            $timer_field = 'timer_numeric';
         } else if ($category == 'Logika') {
             $category_field = 'score_logika';
+            $status_field = 'status_logika';
+            $timer_field = 'timer_logika';
         }
-
         $exam->update([
             $category_field => $score,
+            $status_field => 'done',
+            $timer_field => 0,
         ]);
 
         return response()->json([
             'message' => 'Get score successfully',
             'score' => $score,
+            'total_correct_answer' => $totalCorrectAnswer,
+            'total_incorrect_answer' => $totalIncorrectAnswer,
         ], 200);
     }
 }
