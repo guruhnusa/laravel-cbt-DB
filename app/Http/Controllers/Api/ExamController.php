@@ -176,10 +176,10 @@ class ExamController extends Controller
 
         //calculate score
         $totalCorrectAnswer = $examQuestionList->where('answer', true)->count();
+        $totalIncorrectAnswer = $examQuestionList->where('answer', false)->count();
+
         $totalQuestion = $examQuestionList->count();
         $score = ($totalCorrectAnswer / $totalQuestion) * 100;
-        //totalIncorrectAnswer
-        $totalIncorrectAnswer = $examQuestionList->where('answer', false)->count();
         $category_field = 'score_verbal';
         $status_field = 'status_verbal';
         $timer_field = 'timer_verbal';
@@ -201,8 +201,8 @@ class ExamController extends Controller
         return response()->json([
             'message' => 'Get score successfully',
             'score' => $score,
-            'total_correct_answer' => $totalCorrectAnswer,
-            'total_incorrect_answer' => $totalIncorrectAnswer,
+            'CorrectAnswer' => $totalCorrectAnswer,
+            'IncorrectAnswer' => $totalIncorrectAnswer,
         ], 200);
     }
 }
