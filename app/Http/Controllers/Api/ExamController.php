@@ -59,9 +59,12 @@ class ExamController extends Controller
         $questionVerbal = Question::where('category', 'Verbal')->inRandomOrder()->limit(20)->get();
         $questionLogika = Question::where('category', 'Logika')->inRandomOrder()->limit(20)->get();
 
-        //create exam
+        //create exam and set timer
         $exam = Exam::create([
             'user_id' => $request->user()->id,
+            'timer_numeric' => 10,
+            'timer_verbal' => 10,
+            'timer_logika' => 10,
         ]);
 
         //create exam detail
